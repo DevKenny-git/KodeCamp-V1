@@ -12,7 +12,7 @@ const taskSchema = new mongoose.Schema({
     pictureName: {
         type: String,
         default: ""
-    }
+    },
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "users"
