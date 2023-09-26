@@ -3,12 +3,12 @@ const router = express.Router();
 const multer = require("multer");
 const upload = multer({dest: "public/"})
 const {taskCollection} = require("../schema/taskSchema");
-const {isUserLoggedIn} = require("./middlewares");
+// const {isUserLoggedIn} = require("./middlewares");
 
 
 
 
-app.use(isUserLoggedIn);
+// app.use(isUserLoggedIn);
 
 router.post("/pic", upload.single("file"), async (req, res) => {
     const {taskTitle, taskBody} = req.body;
