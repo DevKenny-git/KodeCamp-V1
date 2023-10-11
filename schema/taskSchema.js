@@ -1,4 +1,6 @@
 const mongoose = require("mongoose");
+const mongoosePaginate = require('mongoose-paginate-v2')
+
 
 const taskSchema = new mongoose.Schema({
     taskTitle: {
@@ -19,6 +21,7 @@ const taskSchema = new mongoose.Schema({
     }
 }, {timestamps: true});
 
+taskSchema.plugin(mongoosePaginate);
 const taskCollection = mongoose.model("tasks", taskSchema);
 
 module.exports = {

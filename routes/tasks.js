@@ -35,6 +35,10 @@ route.get("/by-id/:id", async (req, res) => {
     res.send(task);
 })
 
+route.get("/user-task/:page?/:limit?", async (req, res) => {
+    const userTask = await taskCollection.paginate({user: req.decoded.userId, limit: req.params.limit || 4});
+    res.send(userTask)
+});
 
 route.get("/by-task-title/:title", async(req, res) => {
     const task = await taskCollection.findOne({taskTitle: req.params.title});
@@ -59,7 +63,7 @@ route.patch("/:id", async (req, res) => {
 })
 
 route.get("/admin/all-tasks", adminsOnly, async (req, res) => {
-    const tasks = await taskCollection.find();
+    const tasks = await taskCollection.paginate({}, {page: req.query.page || 1, limit: req.query.limit || 4});
     res.send(tasks);
 })
 
