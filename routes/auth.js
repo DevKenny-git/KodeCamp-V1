@@ -13,6 +13,7 @@ const joi = require("joi")
 
 
 router.post("/register", async (req, res) => {
+    const {fullname, email, role, password} = req.body;
     const registerVaidationSchema = joi.object({
         fullname: joi.string().required(),
         email: joi.string().email().required(),
@@ -23,7 +24,7 @@ router.post("/register", async (req, res) => {
     const {error: registerValidationError} = registerVaidationSchema.validate({fullname, email, role, password})
     if (registerValidationError) return res.send(registerValidationError);
     const salt = bcrypt.genSaltSync(10);
-    const {fullname, email, role, password} = req.body
+    
     const hashedPassword = bcrypt.hashSync(password, salt);
 
 
