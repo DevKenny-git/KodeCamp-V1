@@ -24,7 +24,7 @@ router.post("/pic", upload.single("taskPicture"), async (req, res) => {
         const {filename} = req.file;
         const {userId} = req.decoded;
     
-        const result = await cloudinary.uploader.upload("../public/" + filename, {
+        const result = await cloudinary.uploader.upload("public/" + filename, {
             folder: "task-picture"
         })
     
