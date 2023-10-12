@@ -1,4 +1,5 @@
 const sendMail = require("nodemailer");
+require("dotenv").config();
 
 const options = {
     service: "Gmail",
