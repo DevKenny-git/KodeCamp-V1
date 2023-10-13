@@ -137,7 +137,7 @@ router.put("/password-reset", async (req, res) => {
             password: newHashPassword
         });
 
-        await userCollection.findByIdAndDelete({token});
+        await userCollection.findOneAndDelete({token});
 
         res.send({
             message: "Password changed successfully"
