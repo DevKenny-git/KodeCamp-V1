@@ -131,7 +131,7 @@ router.put("/password-reset", async (req, res) => {
 
         if (!user) return res.status(404).send("invalid-token");
 
-        const newHashPassword = bcrypt.hashSync(newPassword, bcrypt.genSalt(10));
+        const newHashPassword = bcrypt.hashSync(newPassword, bcrypt.genSaltSync(10));
 
         await userCollection.findByIdAndUpdate(user.userId, {
             password: newHashPassword
