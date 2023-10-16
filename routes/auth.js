@@ -128,14 +128,14 @@ router.put("/password-reset", async (req, res) => {
         const {newPassword, token} = req.body;
 
         const user = forgetPasswordCollection.findOne({token});
-
+        console.log(user);
         if (!user) return res.status(404).send("invalid-token");
 
         const newHashPassword = bcrypt.hashSync(newPassword, bcrypt.genSaltSync(10));
 
         await userCollection.findByIdAndUpdate(user.userId, {
             password: newHashPassword
-        });
+        }, {new: true});
 
         await userCollection.findOneAndDelete({token});
 
