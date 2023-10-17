@@ -12,10 +12,17 @@ route.use(isUserLoggedIn);
 
 
 route.get("/", async (req, res) => {
-    const tasks = await taskCollection.find({user: req.decoded.userId})
+    const tasks = await taskCollection.find({user: req.decoded.userId}).populate("user", "-password");
     res.json(tasks);
 });
 
+
+route.get("/task-count", async (req, res) => {
+    const taskCount = await taskCollection.count({user: req.decoded.userId});
+    res.send({
+        taskCount
+    });
+});
 
 route.post("/", async (req, res) => {
     const {taskTitle, taskBody} = req.body

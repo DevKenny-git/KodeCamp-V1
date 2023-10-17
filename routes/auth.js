@@ -127,7 +127,7 @@ router.put("/password-reset", async (req, res) => {
     try {
         const {newPassword, token} = req.body;
 
-        const user = forgetPasswordCollection.findOne({token});
+        const user = await forgetPasswordCollection.findOne({token});
         console.log(user);
         if (!user) return res.status(404).send("invalid-token");
 
