@@ -18,9 +18,16 @@ route.get("/", async (req, res) => {
 
 
 route.get("/task-count", async (req, res) => {
-    const taskCount = await taskCollection.count({user: req.decoded.userId});
+    const taskCount = await taskCollection.countDocuments({user: req.decoded.userId});
     res.send({
         taskCount
+    });
+});
+
+route.get("/unique-task-title", async (req, res) => {
+    const uniqueUsers = await taskCollection.distinct("taskTitle");
+    res.send({
+        uniqueUsers: uniqueUsers.length
     });
 });
 

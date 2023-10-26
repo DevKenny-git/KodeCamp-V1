@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        body {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+        }
+
+        #login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        input, button {
+            width: 100%;
+            padding: 18px 5px;
+        }
+        #login-button {
+            background-color: blue;
+            color: white;
+        }
+    </style>
+    <div id="login-form">
+        <input type="email" id="email" placeholder="example@example.com">
+        <input type="password" id="password" placeholder="***********">
+        <button id="login-button">Login</button>
+    </div>
+
+    <script>
+        const email = document.getElementById('email');
+        const password = document.getElementById("password");
+        const loginButton = document.getElementById("login-button");
+
+        loginButton.addEventListener("click", async function() {
+            const response = await fetch("https://kodecamp-tasl.onrender.com/v1/auth/login"), {
+                method: "POST",
+                headers: {
+                    ContentType: "application/json"
+                }
+            }
+        })
+    </script>
+</body>
+</html>

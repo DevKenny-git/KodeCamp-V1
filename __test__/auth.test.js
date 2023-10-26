@@ -1,6 +1,4 @@
 const axios = require('axios');
-const request = require("supertest");
-const app = request("../index");
 const auth = require("../routes/auth");
 
 // test("Test to see if the registration works well", async () => {
